@@ -23,6 +23,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Build
+        env:
+          SESSION_SECRET: ${{secrets.SESSION_SECRET}}
         run: |
           npm install
           npm run build
