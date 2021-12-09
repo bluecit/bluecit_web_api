@@ -19,7 +19,7 @@ export const CustomLogo = () => {
             textDecoration: "none",
           }}
         >
-          BlueCIT Dashboard
+          BlueCIT Console
         </a>
       </Link>
     </H3>
