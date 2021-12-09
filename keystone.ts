@@ -18,6 +18,9 @@ export default withAuth(
   // Using the config function helps typescript guide you to the available options.
   config({
     // the db sets the database provider - we're using sqlite for the fastest startup experience
+    server: {
+      port: 3001,
+    },
     db: {
       provider: "sqlite",
       url: "file:./bluecit.db",
