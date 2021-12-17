@@ -1,0 +1,21 @@
+== Nginx Rewrite
+
+location /api {
+    rewrite ^\/api\/(.*)$ /api/$1 break;
+    proxy_pass http://localhost:3001;
+}
+
+
+# Create simlink
+
+sudo ln -s /etc/nginx/sites-available/bluecit.io /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/console.bluecit.io /etc/nginx/sites-enabled/
+
+
+# Installing Certbot
+
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt install python-certbot-nginx
+
+ sudo certbot --nginx  -d bluecit.io -d www.bluecit.io
+ sudo certbot --nginx  -d console.bluecit.io -d www.console.bluecit.io

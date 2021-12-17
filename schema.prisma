@@ -11,6 +11,16 @@ generator client {
   output   = "node_modules/.prisma/client"
 }
 
+model ContactForm {
+  id                   String  @id @default(cuid())
+  name                 String  @default("")
+  email                String  @default("")
+  description          String  @default("")
+  phone                String  @default("")
+  budget               String? @default("Select Your budget")
+  howDidYouHearAboutUs String  @default("")
+}
+
 model User {
   id       String @id @default(cuid())
   name     String @default("")
