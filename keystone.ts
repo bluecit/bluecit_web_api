@@ -13,7 +13,10 @@ import { lists } from "./schema";
 
 // Keystone auth is configured separately - check out the basic auth setup we are importing from our auth file.
 import { withAuth, session } from "./auth";
-
+import { devDB, prodDB } from "./configs";
+const devURL = process.env.FRONTEND_URL as string;
+const prodURL = process.env.FRONTEND_PROD_URL as string;
+console.log(devDB);
 export default withAuth(
   // Using the config function helps typescript guide you to the available options.
   config({
@@ -21,13 +24,16 @@ export default withAuth(
     server: {
       port: 3000,
       cors: {
-        origin: [process.env.FRONTEND_URL as string],
+        origin: [devURL, prodURL],
         credentials: true,
       },
     },
     db: {
       provider: "sqlite",
-      url: "file:./bluecit.db",
+      url:
+        process.env.NODE_ENV === "development"
+          ? "file:./databases/dev_bluecit.db"
+          : prodDB,
     },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
