@@ -6,6 +6,7 @@
     "dev": "keystone dev",
     "start": "keystone start",
     "build": "keystone build",
+    "reset_db": "keystone dev --reset-db",
     "postinstall": "keystone postinstall"
   },
   "dependencies": {

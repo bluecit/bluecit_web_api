@@ -10,13 +10,14 @@ import { config } from "@keystone-6/core";
 
 // Look in the schema file for how we define our lists, and how users interact with them through graphql or the Admin UI
 import { lists } from "./schema";
-
+console.log(process.env.NODE_ENV);
 // Keystone auth is configured separately - check out the basic auth setup we are importing from our auth file.
 import { withAuth, session } from "./auth";
-import { devDB, prodDB } from "./configs";
+import { devDB, prodDB } from "./config";
 const devURL = process.env.FRONTEND_URL as string;
 const prodURL = process.env.FRONTEND_PROD_URL as string;
 console.log(devDB);
+
 export default withAuth(
   // Using the config function helps typescript guide you to the available options.
   config({
@@ -30,10 +31,7 @@ export default withAuth(
     },
     db: {
       provider: "sqlite",
-      url:
-        process.env.NODE_ENV === "development"
-          ? "file:./databases/dev_bluecit.db"
-          : prodDB,
+      url: process.env.NODE_ENV === "development" ? devDB : prodDB,
     },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
